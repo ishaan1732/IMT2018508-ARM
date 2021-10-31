@@ -28,7 +28,20 @@ loop
 				;BL printMsg
 				SUB R10,R10, #01
 				CMP R10, #00
-				BNE loop				
+				BNE loop
+				
+				MOV R10, #00
+				MOV R1, #0x20000000
+print
+				LDRSB R3, [R1,#0x00]
+				MOV R0, R3
+				BL printMsg
+				MOV R1, #0x20000000
+				ADD R10,R10,#1
+				ADD R1,R1,R10
+				CMP R10,#10
+				BNE print
+				
 stop b stop
 values DCD &00,&01
 				ENDFUNC
